@@ -9,23 +9,29 @@
 /* Begin PBXBuildFile section */
 		C036DF1A29EB22BA00BF51FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C036DF1929EB22BA00BF51FD /* AppDelegate.swift */; };
 		C036DF1C29EB22BA00BF51FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C036DF1B29EB22BA00BF51FD /* SceneDelegate.swift */; };
-		C036DF1E29EB22BA00BF51FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C036DF1D29EB22BA00BF51FD /* ViewController.swift */; };
+		C036DF1E29EB22BA00BF51FD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C036DF1D29EB22BA00BF51FD /* MainViewController.swift */; };
 		C036DF2129EB22BA00BF51FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C036DF1F29EB22BA00BF51FD /* Main.storyboard */; };
 		C036DF2429EB22BA00BF51FD /* AudioMemos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C036DF2229EB22BA00BF51FD /* AudioMemos.xcdatamodeld */; };
 		C036DF2629EB22BC00BF51FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C036DF2529EB22BC00BF51FD /* Assets.xcassets */; };
 		C036DF2929EB22BD00BF51FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C036DF2729EB22BD00BF51FD /* LaunchScreen.storyboard */; };
+		C036DF3429EC589200BF51FD /* AudioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C036DF3229EC589200BF51FD /* AudioCell.swift */; };
+		C036DF3529EC589200BF51FD /* AudioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C036DF3329EC589200BF51FD /* AudioCell.xib */; };
+		C036DF3829EF19D500BF51FD /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C036DF3729EF19D500BF51FD /* AudioRecorder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C036DF1629EB22BA00BF51FD /* AudioMemos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioMemos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C036DF1929EB22BA00BF51FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C036DF1B29EB22BA00BF51FD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C036DF1D29EB22BA00BF51FD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C036DF1D29EB22BA00BF51FD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C036DF2029EB22BA00BF51FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C036DF2329EB22BA00BF51FD /* AudioMemos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AudioMemos.xcdatamodel; sourceTree = "<group>"; };
 		C036DF2529EB22BC00BF51FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C036DF2829EB22BD00BF51FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C036DF2A29EB22BD00BF51FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C036DF3229EC589200BF51FD /* AudioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCell.swift; sourceTree = "<group>"; };
+		C036DF3329EC589200BF51FD /* AudioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioCell.xib; sourceTree = "<group>"; };
+		C036DF3729EF19D500BF51FD /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +64,43 @@
 		C036DF1829EB22BA00BF51FD /* AudioMemos */ = {
 			isa = PBXGroup;
 			children = (
+				C036DF3629EF19BC00BF51FD /* Models */,
 				C036DF1929EB22BA00BF51FD /* AppDelegate.swift */,
 				C036DF1B29EB22BA00BF51FD /* SceneDelegate.swift */,
-				C036DF1D29EB22BA00BF51FD /* ViewController.swift */,
-				C036DF1F29EB22BA00BF51FD /* Main.storyboard */,
+				C036DF3129EB23E600BF51FD /* Controllers */,
+				C036DF3029EB23C900BF51FD /* Views */,
 				C036DF2529EB22BC00BF51FD /* Assets.xcassets */,
 				C036DF2729EB22BD00BF51FD /* LaunchScreen.storyboard */,
 				C036DF2A29EB22BD00BF51FD /* Info.plist */,
 				C036DF2229EB22BA00BF51FD /* AudioMemos.xcdatamodeld */,
 			);
 			path = AudioMemos;
+			sourceTree = "<group>";
+		};
+		C036DF3029EB23C900BF51FD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C036DF1F29EB22BA00BF51FD /* Main.storyboard */,
+				C036DF3229EC589200BF51FD /* AudioCell.swift */,
+				C036DF3329EC589200BF51FD /* AudioCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C036DF3129EB23E600BF51FD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C036DF1D29EB22BA00BF51FD /* MainViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C036DF3629EF19BC00BF51FD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C036DF3729EF19D500BF51FD /* AudioRecorder.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +161,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C036DF3529EC589200BF51FD /* AudioCell.xib in Resources */,
 				C036DF2929EB22BD00BF51FD /* LaunchScreen.storyboard in Resources */,
 				C036DF2629EB22BC00BF51FD /* Assets.xcassets in Resources */,
 				C036DF2129EB22BA00BF51FD /* Main.storyboard in Resources */,
@@ -141,10 +175,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C036DF1E29EB22BA00BF51FD /* ViewController.swift in Sources */,
+				C036DF3829EF19D500BF51FD /* AudioRecorder.swift in Sources */,
+				C036DF1E29EB22BA00BF51FD /* MainViewController.swift in Sources */,
 				C036DF1A29EB22BA00BF51FD /* AppDelegate.swift in Sources */,
 				C036DF2429EB22BA00BF51FD /* AudioMemos.xcdatamodeld in Sources */,
 				C036DF1C29EB22BA00BF51FD /* SceneDelegate.swift in Sources */,
+				C036DF3429EC589200BF51FD /* AudioCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
