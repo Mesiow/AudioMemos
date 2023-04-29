@@ -10,6 +10,8 @@ import UIKit
 class AudioCell: UITableViewCell {
     var expanded : Bool = false;
     var originalCellHeight : CGFloat = 48.0;
+    var expandedCellHeight : CGFloat = 144.0
+
     
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var date: UILabel!
@@ -19,6 +21,7 @@ class AudioCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         self.selectionStyle = .none;
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

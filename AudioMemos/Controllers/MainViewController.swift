@@ -12,17 +12,10 @@ struct Constants {
     static var cellNibName = "AudioCell"
 }
 
-struct AudioMemo {
-    var title : String;
-    var url : URL;
-    var date : Date;
-    var length: Int;
-}
-
-class MainViewController: UIViewController, AudioRecorderDelegate {
+class MainViewController: UIViewController, AudioRPDelegate {
     
-    var audioRecorder : AudioRecorder!
-    var audioMemos : [AudioMemo] = [];
+    var audiorp : AudioRP!
+    var memos : [AudioMemo] = [];
     
     @IBOutlet weak var buttonBorder: UIButton!
     @IBOutlet weak var innerButton: UIButton!
@@ -36,9 +29,11 @@ class MainViewController: UIViewController, AudioRecorderDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        audioRecorder = AudioRecorder();
-        audioRecorder.delegate = self;
-        audioRecorder.setup();
+        loadAudioMemos();
+        
+        audiorp = AudioRP();
+        audiorp.delegate = self;
+        audiorp.setup();
         
         tableView.delegate = self;
         tableView.dataSource = self;
@@ -51,14 +46,17 @@ class MainViewController: UIViewController, AudioRecorderDelegate {
     }
     
     @IBAction func recordButtonPressed(_ sender: UIButton) {
-        audioRecorder.record();
+        audiorp.record();
     }
     
     func handleAudioRecordingStopped(_ memo : AudioMemo) {
         //handle what we want to do once the recording has been stopped
+        
+        //1. save to core data
+        saveAudioMemos();
 
         //1. add recording to our tableview
-        audioMemos.append(memo);
+        memos.append(memo);
         tableView.reloadData();
     }
     
@@ -85,14 +83,14 @@ class MainViewController: UIViewController, AudioRecorderDelegate {
 //MARK: - Table view functionality
 extension MainViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return audioMemos.count;
+        return memos.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath) as! AudioCell
         
-        cell.title.text = audioMemos[indexPath.row].title;
-        cell.date.text = audioMemos[indexPath.row].date.formatted(date: .abbreviated, time: .omitted);
+        cell.title.text = memos[indexPath.row].name;
+        cell.date.text = memos[indexPath.row].date?.formatted(date: .abbreviated, time: .omitted);
         cell.length.text = "0:00";
         
         return cell;
@@ -107,17 +105,20 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
         tableView.beginUpdates();
         tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.automatic);
         tableView.endUpdates();
+        
+        audiorp.playback(memos[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if let cell = tableView.cellForRow(at: indexPath) as? AudioCell {
+      /* if let cell = tableView.cellForRow(at: indexPath) as? AudioCell {
             if indexPath.row == expandedRowIndex && expandRow {
                 cell.length.isHidden = true;
-                return cell.originalCellHeight * 2.0;
+                return cell.expandedCellHeight;
             }else{
                 cell.length.isHidden = false;
+                return cell.originalCellHeight;
             }
-        }
+        }*/
         return UITableView.automaticDimension;
     }
 }

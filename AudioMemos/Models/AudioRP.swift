@@ -9,21 +9,26 @@ import Foundation
 import UIKit
 import AVFoundation
 
-protocol AudioRecorderDelegate {
+protocol AudioRPDelegate {
     func handleAudioRecordingStopped(_ audioMemo : AudioMemo);
 }
 
-class AudioRecorder {
+//implementation for audio recording and playback
+class AudioRP {
     var session : AVAudioSession!
     var recorder : AVAudioRecorder!
+    var player : AVAudioPlayer!
     var enabled : Bool = false;
     var recordings : Int = 0;
     
-    var delegate : AudioRecorderDelegate?
+    var delegate : AudioRPDelegate?
     var filename : String!
     var soundFileUrl : URL!
     
     func setup() -> Void {
+        //load number of current recordings
+        recordings = UserDefaults.standard.integer(forKey: "RecordingsCount");
+        
         session = AVAudioSession.sharedInstance();
         do {
             try session.setCategory(.playAndRecord, mode: .default);
@@ -48,10 +53,12 @@ class AudioRecorder {
         if enabled {
             if recorder == nil { //are we ok to start another recording?
                 recordings += 1;
-                filename  = "New Recording \(recordings)";
+                UserDefaults.standard.set(recordings, forKey: "RecordingsCount");
+                
+                filename  = "New Recording \(recordings)"; //save recordings count in user defaults
                 soundFileUrl = getDirectory().appending(path: filename + ".m4a");
                 
-                let settings = [AVFormatIDKey : Int(kAudioFormatMPEG4AAC), AVSampleRateKey: 12000, AVNumberOfChannelsKey : 1, AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue];
+                let settings = [AVFormatIDKey : Int(kAudioFormatMPEG4AAC), AVSampleRateKey: 44100, AVNumberOfChannelsKey : 2, AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue];
                 
                 //start recording
                 do {
@@ -67,8 +74,25 @@ class AudioRecorder {
                 recorder.stop();
                 recorder = nil;
                 
-                let memo = AudioMemo(title: filename, url: soundFileUrl, date: Date(), length: 0);
+                let memo = AudioMemo(context: CoreDataContext.context)
+                memo.name = filename;
+                memo.url = soundFileUrl;
+                memo.date = Date();
+                memo.length = 0;
+
                 delegate?.handleAudioRecordingStopped(memo);
+            }
+        }
+    }
+    
+    func playback(_ memo : AudioMemo) {
+        if recorder == nil { //not currently recording
+            do{
+                player = try AVAudioPlayer(contentsOf: memo.url!);
+                player.prepareToPlay();
+                player.play();
+            }catch{
+                print("Audio playback error: \(error)");
             }
         }
     }

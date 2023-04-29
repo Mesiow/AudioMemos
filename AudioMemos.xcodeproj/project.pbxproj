@@ -16,7 +16,9 @@
 		C036DF2929EB22BD00BF51FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C036DF2729EB22BD00BF51FD /* LaunchScreen.storyboard */; };
 		C036DF3429EC589200BF51FD /* AudioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C036DF3229EC589200BF51FD /* AudioCell.swift */; };
 		C036DF3529EC589200BF51FD /* AudioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C036DF3329EC589200BF51FD /* AudioCell.xib */; };
-		C036DF3829EF19D500BF51FD /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C036DF3729EF19D500BF51FD /* AudioRecorder.swift */; };
+		C036DF3829EF19D500BF51FD /* AudioRP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C036DF3729EF19D500BF51FD /* AudioRP.swift */; };
+		C0695A4F29FD73A900140F9F /* AudioMemoModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0695A4D29FD73A900140F9F /* AudioMemoModel.xcdatamodeld */; };
+		C0695A5129FD75EC00140F9F /* AudioMemoCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0695A5029FD75EC00140F9F /* AudioMemoCoreData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +33,9 @@
 		C036DF2A29EB22BD00BF51FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C036DF3229EC589200BF51FD /* AudioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCell.swift; sourceTree = "<group>"; };
 		C036DF3329EC589200BF51FD /* AudioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioCell.xib; sourceTree = "<group>"; };
-		C036DF3729EF19D500BF51FD /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		C036DF3729EF19D500BF51FD /* AudioRP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRP.swift; sourceTree = "<group>"; };
+		C0695A4E29FD73A900140F9F /* AudioMemoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AudioMemoModel.xcdatamodel; sourceTree = "<group>"; };
+		C0695A5029FD75EC00140F9F /* AudioMemoCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMemoCoreData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,7 @@
 		C036DF1829EB22BA00BF51FD /* AudioMemos */ = {
 			isa = PBXGroup;
 			children = (
+				C0695A4C29FD736800140F9F /* DataModel */,
 				C036DF3629EF19BC00BF51FD /* Models */,
 				C036DF1929EB22BA00BF51FD /* AppDelegate.swift */,
 				C036DF1B29EB22BA00BF51FD /* SceneDelegate.swift */,
@@ -98,9 +103,18 @@
 		C036DF3629EF19BC00BF51FD /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C036DF3729EF19D500BF51FD /* AudioRecorder.swift */,
+				C036DF3729EF19D500BF51FD /* AudioRP.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		C0695A4C29FD736800140F9F /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				C0695A4D29FD73A900140F9F /* AudioMemoModel.xcdatamodeld */,
+				C0695A5029FD75EC00140F9F /* AudioMemoCoreData.swift */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,10 +189,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C036DF3829EF19D500BF51FD /* AudioRecorder.swift in Sources */,
+				C0695A4F29FD73A900140F9F /* AudioMemoModel.xcdatamodeld in Sources */,
+				C036DF3829EF19D500BF51FD /* AudioRP.swift in Sources */,
 				C036DF1E29EB22BA00BF51FD /* MainViewController.swift in Sources */,
 				C036DF1A29EB22BA00BF51FD /* AppDelegate.swift in Sources */,
 				C036DF2429EB22BA00BF51FD /* AudioMemos.xcdatamodeld in Sources */,
+				C0695A5129FD75EC00140F9F /* AudioMemoCoreData.swift in Sources */,
 				C036DF1C29EB22BA00BF51FD /* SceneDelegate.swift in Sources */,
 				C036DF3429EC589200BF51FD /* AudioCell.swift in Sources */,
 			);
@@ -407,6 +423,16 @@
 			);
 			currentVersion = C036DF2329EB22BA00BF51FD /* AudioMemos.xcdatamodel */;
 			path = AudioMemos.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		C0695A4D29FD73A900140F9F /* AudioMemoModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C0695A4E29FD73A900140F9F /* AudioMemoModel.xcdatamodel */,
+			);
+			currentVersion = C0695A4E29FD73A900140F9F /* AudioMemoModel.xcdatamodel */;
+			path = AudioMemoModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
