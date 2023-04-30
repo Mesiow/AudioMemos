@@ -31,7 +31,7 @@ class AudioRP {
         
         session = AVAudioSession.sharedInstance();
         do {
-            try session.setCategory(.playAndRecord, mode: .default);
+            try session.setCategory(.record, mode: .default);
             try session.setActive(true);
             session.requestRecordPermission() { allowed in
                 DispatchQueue.main.async {
@@ -50,12 +50,19 @@ class AudioRP {
     }
     
     func record() -> Void {
+        do {
+            try session.setCategory(.record, mode: .default)
+            try session.setActive(true);
+        }catch{
+            print("--Error failed when setting session category for recording--");
+            return;
+        }
+        
         if enabled {
             if recorder == nil { //are we ok to start another recording?
                 recordings += 1;
-                UserDefaults.standard.set(recordings, forKey: "RecordingsCount");
                 
-                filename  = "New Recording \(recordings)"; //save recordings count in user defaults
+                filename = "New Recording \(recordings)"; //save recordings count in user defaults
                 soundFileUrl = getDirectory().appending(path: filename + ".m4a");
                 
                 let settings = [AVFormatIDKey : Int(kAudioFormatMPEG4AAC), AVSampleRateKey: 44100, AVNumberOfChannelsKey : 2, AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue];
@@ -70,13 +77,14 @@ class AudioRP {
                 }
             }
             else{
-                print("recording stopped");
+                UserDefaults.standard.set(recordings, forKey: "RecordingsCount");
+                
                 recorder.stop();
                 recorder = nil;
                 
                 let memo = AudioMemo(context: CoreDataContext.context)
                 memo.name = filename;
-                memo.url = soundFileUrl;
+                memo.url = soundFileUrl.absoluteString;
                 memo.date = Date();
                 memo.length = 0;
 
@@ -86,13 +94,23 @@ class AudioRP {
     }
     
     func playback(_ memo : AudioMemo) {
+        do {
+            try session.setCategory(.playback, mode: .default)
+            try session.setActive(true);
+        }catch{
+            print("--Error failed when setting session category for playback--");
+            return;
+        }
+        
         if recorder == nil { //not currently recording
             do{
-                player = try AVAudioPlayer(contentsOf: memo.url!);
+                print(memo.url!);
+                let url = URL(string: memo.url!)!
+                player = try AVAudioPlayer(contentsOf: url);
                 player.prepareToPlay();
                 player.play();
-            }catch{
-                print("Audio playback error: \(error)");
+            }catch let error as NSError{
+                print("Audio playback error: \(error.description)");
             }
         }
     }

@@ -22,13 +22,13 @@ extension MainViewController {
         }
     }
     
-    func loadAudioMemos() {
-        let request : NSFetchRequest<AudioMemo> = AudioMemo.fetchRequest();
+    func loadAudioMemos(with request : NSFetchRequest<AudioMemo> = AudioMemo.fetchRequest()) {
         do{
             memos = try CoreDataContext.context.fetch(request);
         }catch {
             print("(Core data) Error loading memos \(error)");
         }
+        tableView.reloadData();
     }
     
     func reloadAudioMemos(){
@@ -41,5 +41,19 @@ extension MainViewController {
         CoreDataContext.context.delete(memos[indexPath.row]); //implicity saves the changes of deletion to core data
         reloadAudioMemos();
     }
+    
+    func deleteAllRecords() {
+           //delete all data
+
+           let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "AudioMemo")
+           let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+
+           do {
+               try CoreDataContext.context.execute(deleteRequest)
+               try CoreDataContext.context.save()
+           } catch {
+               print ("There was an error deleting records")
+           }
+       }
     
 }

@@ -36,6 +36,7 @@
 		C036DF3729EF19D500BF51FD /* AudioRP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRP.swift; sourceTree = "<group>"; };
 		C0695A4E29FD73A900140F9F /* AudioMemoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AudioMemoModel.xcdatamodel; sourceTree = "<group>"; };
 		C0695A5029FD75EC00140F9F /* AudioMemoCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMemoCoreData.swift; sourceTree = "<group>"; };
+		C0695A5229FD835600140F9F /* AudioMemoModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "AudioMemoModel 2.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,11 +347,12 @@
 				DEVELOPMENT_TEAM = 822D8Y7G66;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AudioMemos/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow application to access the microphone?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -374,11 +376,12 @@
 				DEVELOPMENT_TEAM = 822D8Y7G66;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AudioMemos/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow application to access the microphone?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -429,9 +432,10 @@
 		C0695A4D29FD73A900140F9F /* AudioMemoModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				C0695A5229FD835600140F9F /* AudioMemoModel 2.xcdatamodel */,
 				C0695A4E29FD73A900140F9F /* AudioMemoModel.xcdatamodel */,
 			);
-			currentVersion = C0695A4E29FD73A900140F9F /* AudioMemoModel.xcdatamodel */;
+			currentVersion = C0695A5229FD835600140F9F /* AudioMemoModel 2.xcdatamodel */;
 			path = AudioMemoModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

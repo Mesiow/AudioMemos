@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 struct Constants {
     static var cellIdentifier = "ReusableAudioCell";
@@ -28,6 +29,9 @@ class MainViewController: UIViewController, AudioRPDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        /*deleteAllRecords();
+        UserDefaults.standard.removeObject(forKey: "RecordingsCount");*/
         
         loadAudioMemos();
         
@@ -137,10 +141,38 @@ extension MainViewController : UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder();
         searchBar.setShowsCancelButton(false, animated: true);
+        
+        searchBar.text = "";
+        loadAudioMemos();
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if let text = searchBar.text {
+            if text.count == 0 {
+                loadAudioMemos();
+                DispatchQueue.main.async {
+                    searchBar.setShowsCancelButton(false, animated: true);
+                    searchBar.resignFirstResponder(); //dismiss keyboard
+                }
+            }else{
+                liveUpdateSearch();
+            }
+        }
+    }
+    
+    func liveUpdateSearch(){
+        //create a request
+        let req : NSFetchRequest<AudioMemo> = AudioMemo.fetchRequest();
+        //filter for name of audio memo
+        let namePredicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!);
         
+        req.predicate = namePredicate;
+        
+        //How to store results
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true);
+        req.sortDescriptors = [sortDescriptor];
+        
+        loadAudioMemos(with: req);
     }
 }
 
