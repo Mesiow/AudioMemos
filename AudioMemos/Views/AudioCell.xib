@@ -30,13 +30,12 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nx3-en-3eC">
-                                        <rect key="frame" x="19" y="4" width="210" height="21"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rQW-61-jss" userLabel="Title">
+                                        <rect key="frame" x="19" y="0.0" width="210" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
@@ -70,7 +69,7 @@
             <connections>
                 <outlet property="date" destination="zg0-Ai-2gP" id="kdI-re-Xdj"/>
                 <outlet property="length" destination="jEp-IX-pOt" id="FbU-ID-fuK"/>
-                <outlet property="title" destination="Nx3-en-3eC" id="0UL-gv-dNi"/>
+                <outlet property="title" destination="rQW-61-jss" id="rIk-Pv-jVF"/>
             </connections>
             <point key="canvasLocation" x="100.76335877862596" y="18.30985915492958"/>
         </tableViewCell>

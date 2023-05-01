@@ -94,10 +94,19 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath) as! AudioCell
         
         cell.title.text = memos[indexPath.row].name;
+        cell.title.tag = indexPath.row;
+        //callback to update audio memo title text
+        cell.audioCellTitleEdited = audioCellTitleEdited;
+        
         cell.date.text = memos[indexPath.row].date?.formatted(date: .abbreviated, time: .omitted);
         cell.length.text = "0:00";
         
         return cell;
+    }
+        
+    func audioCellTitleEdited(_ title : String, _ tag : Int) -> Void {
+        memos[tag].name = title;
+        reloadAudioMemos();
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

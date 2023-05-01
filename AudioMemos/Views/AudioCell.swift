@@ -8,18 +8,20 @@
 import UIKit
 
 class AudioCell: UITableViewCell {
+    var audioCellTitleEdited : ((_ title : String, _ tag : Int) -> Void)!
+    
     var expanded : Bool = false;
     var originalCellHeight : CGFloat = 48.0;
     var expandedCellHeight : CGFloat = 144.0
 
-    
-    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var title: UITextField!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var length: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        title.delegate = self;
         self.selectionStyle = .none;
         
     }
@@ -34,4 +36,13 @@ class AudioCell: UITableViewCell {
         super.layoutSubviews();
     }
     
+}
+
+extension AudioCell : UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder();
+        audioCellTitleEdited(textField.text!, textField.tag);
+            
+        return true;
+    }
 }

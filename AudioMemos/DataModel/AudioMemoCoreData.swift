@@ -31,10 +31,10 @@ extension MainViewController {
         tableView.reloadData();
     }
     
+    //This function both saves and loads the data at once
     func reloadAudioMemos(){
         saveAudioMemos();
         loadAudioMemos();
-        tableView.reloadData();
     }
     
     func deleteAudioMemoFromCollection(at indexPath: IndexPath){
