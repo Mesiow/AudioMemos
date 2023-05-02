@@ -99,7 +99,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
         cell.audioCellTitleEdited = audioCellTitleEdited;
         
         cell.date.text = memos[indexPath.row].date?.formatted(date: .abbreviated, time: .omitted);
-        cell.length.text = "0:00";
+        cell.length.text = memos[indexPath.row].length;
         
         return cell;
     }

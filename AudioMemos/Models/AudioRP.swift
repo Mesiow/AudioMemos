@@ -25,6 +25,9 @@ class AudioRP {
     var filename : String!
     var soundFileUrl : URL!
     
+    var start : TimeInterval!
+    var finish : TimeInterval!
+    
     func setup() -> Void {
         //load number of current recordings
         recordings = UserDefaults.standard.integer(forKey: "RecordingsCount");
@@ -37,7 +40,7 @@ class AudioRP {
                 DispatchQueue.main.async {
                     if allowed {
                         self.enabled = true;
-                        print("mic allowed");
+                        print("Mic allowed");
                     }else{
                         self.enabled = false;
                         print("--Error failed asking for permission to record audio--")
@@ -60,6 +63,8 @@ class AudioRP {
         
         if enabled {
             if recorder == nil { //are we ok to start another recording?
+                start = Date().timeIntervalSince1970;
+                
                 recordings += 1;
                 
                 filename = "New Recording \(recordings)"; //save recordings count in user defaults
@@ -82,11 +87,15 @@ class AudioRP {
                 recorder.stop();
                 recorder = nil;
                 
+                finish = Date().timeIntervalSince1970;
+                let diff = Int32(finish - start);
+                let time = secondsToMinSec(seconds: diff);
+                
                 let memo = AudioMemo(context: CoreDataContext.context)
                 memo.name = filename;
                 memo.url = soundFileUrl.absoluteString;
                 memo.date = Date();
-                memo.length = 0;
+                memo.length = "\(time.min):\(String(format: "%02d", time.sec))";
 
                 delegate?.handleAudioRecordingStopped(memo);
             }
@@ -121,5 +130,9 @@ class AudioRP {
         let dir = paths[0];
         
         return dir;
+    }
+    
+    private func secondsToMinSec(seconds : Int32) -> (min: Int32, sec: Int32) {
+        return (((seconds % 3600) / 60), ((seconds % 3600) % 60));
     }
 }

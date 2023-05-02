@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="21G72" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="AudioMemo" representedClassName="AudioMemo" syncable="YES" codeGenerationType="class">
-        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="length" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="name" attributeType="String"/>
-        <attribute name="url" attributeType="String"/>
-    </entity>
-</model>

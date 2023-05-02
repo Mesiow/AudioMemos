@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
         let container = NSPersistentContainer(name: "AudioMemoModel")
         
-       /* let description = NSPersistentStoreDescription()
+        /*let description = NSPersistentStoreDescription()
         description.shouldMigrateStoreAutomatically = true
         description.shouldInferMappingModelAutomatically = true
         container.persistentStoreDescriptions=[description]*/
