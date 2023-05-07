@@ -18,7 +18,7 @@
 		C036DF3529EC589200BF51FD /* AudioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C036DF3329EC589200BF51FD /* AudioCell.xib */; };
 		C036DF3829EF19D500BF51FD /* AudioRP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C036DF3729EF19D500BF51FD /* AudioRP.swift */; };
 		C0695A5129FD75EC00140F9F /* AudioMemoCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0695A5029FD75EC00140F9F /* AudioMemoCoreData.swift */; };
-		C0CF195E2A01773B00DA21AF /* AudioMemoModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0CF195C2A01773B00DA21AF /* AudioMemoModel.xcdatamodeld */; };
+		C0CF19612A0821C200DA21AF /* AudioMemoModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0CF195F2A0821C200DA21AF /* AudioMemoModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +35,7 @@
 		C036DF3329EC589200BF51FD /* AudioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioCell.xib; sourceTree = "<group>"; };
 		C036DF3729EF19D500BF51FD /* AudioRP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRP.swift; sourceTree = "<group>"; };
 		C0695A5029FD75EC00140F9F /* AudioMemoCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMemoCoreData.swift; sourceTree = "<group>"; };
-		C0CF195D2A01773B00DA21AF /* AudioMemoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AudioMemoModel.xcdatamodel; sourceTree = "<group>"; };
+		C0CF19602A0821C200DA21AF /* AudioMemoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AudioMemoModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				C0695A5029FD75EC00140F9F /* AudioMemoCoreData.swift */,
-				C0CF195C2A01773B00DA21AF /* AudioMemoModel.xcdatamodeld */,
+				C0CF195F2A0821C200DA21AF /* AudioMemoModel.xcdatamodeld */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -193,7 +193,7 @@
 				C036DF1E29EB22BA00BF51FD /* MainViewController.swift in Sources */,
 				C036DF1A29EB22BA00BF51FD /* AppDelegate.swift in Sources */,
 				C036DF2429EB22BA00BF51FD /* AudioMemos.xcdatamodeld in Sources */,
-				C0CF195E2A01773B00DA21AF /* AudioMemoModel.xcdatamodeld in Sources */,
+				C0CF19612A0821C200DA21AF /* AudioMemoModel.xcdatamodeld in Sources */,
 				C0695A5129FD75EC00140F9F /* AudioMemoCoreData.swift in Sources */,
 				C036DF1C29EB22BA00BF51FD /* SceneDelegate.swift in Sources */,
 				C036DF3429EC589200BF51FD /* AudioCell.swift in Sources */,
@@ -428,12 +428,12 @@
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
-		C0CF195C2A01773B00DA21AF /* AudioMemoModel.xcdatamodeld */ = {
+		C0CF195F2A0821C200DA21AF /* AudioMemoModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				C0CF195D2A01773B00DA21AF /* AudioMemoModel.xcdatamodel */,
+				C0CF19602A0821C200DA21AF /* AudioMemoModel.xcdatamodel */,
 			);
-			currentVersion = C0CF195D2A01773B00DA21AF /* AudioMemoModel.xcdatamodel */;
+			currentVersion = C0CF19602A0821C200DA21AF /* AudioMemoModel.xcdatamodel */;
 			path = AudioMemoModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

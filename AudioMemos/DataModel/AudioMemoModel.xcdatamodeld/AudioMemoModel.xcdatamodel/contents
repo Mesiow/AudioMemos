@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="21G72" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AudioMemo" representedClassName="AudioMemo" syncable="YES" codeGenerationType="class">
-        <attribute name="date" attributeType="Date" defaultDateTimeInterval="704739180" usesScalarValueType="NO"/>
+        <attribute name="date" attributeType="Date" defaultDateTimeInterval="705176040" usesScalarValueType="NO"/>
+        <attribute name="filename" attributeType="String" defaultValueString=""/>
         <attribute name="length" attributeType="String" defaultValueString=""/>
-        <attribute name="name" attributeType="String" defaultValueString=""/>
-        <attribute name="url" attributeType="String" defaultValueString=""/>
     </entity>
 </model>

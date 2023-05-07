@@ -93,7 +93,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath) as! AudioCell
         
-        cell.title.text = memos[indexPath.row].name;
+        cell.title.text = memos[indexPath.row].filename;
         cell.title.tag = indexPath.row;
         //callback to update audio memo title text
         cell.audioCellTitleEdited = audioCellTitleEdited;
@@ -105,7 +105,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
     }
         
     func audioCellTitleEdited(_ title : String, _ tag : Int) -> Void {
-        memos[tag].name = title;
+        memos[tag].filename = title;
         reloadAudioMemos();
     }
     

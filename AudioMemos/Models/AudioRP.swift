@@ -16,14 +16,14 @@ protocol AudioRPDelegate {
 //implementation for audio recording and playback
 class AudioRP {
     var session : AVAudioSession!
-    var recorder : AVAudioRecorder!
+    var recorder : AVAudioRecorder! = nil
     var player : AVAudioPlayer!
     var enabled : Bool = false;
     var recordings : Int = 0;
     
     var delegate : AudioRPDelegate?
     var filename : String!
-    var soundFileUrl : URL!
+    let ext : String = ".m4a";
     
     var start : TimeInterval!
     var finish : TimeInterval!
@@ -68,7 +68,7 @@ class AudioRP {
                 recordings += 1;
                 
                 filename = "New Recording \(recordings)"; //save recordings count in user defaults
-                soundFileUrl = getDirectory().appending(path: filename + ".m4a");
+                let soundFileUrl = getDirectory().appending(path: filename + ext);
                 
                 let settings = [AVFormatIDKey : Int(kAudioFormatMPEG4AAC), AVSampleRateKey: 44100, AVNumberOfChannelsKey : 2, AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue];
                 
@@ -92,8 +92,7 @@ class AudioRP {
                 let time = secondsToMinSec(seconds: diff);
                 
                 let memo = AudioMemo(context: CoreDataContext.context)
-                memo.name = filename;
-                memo.url = soundFileUrl.absoluteString;
+                memo.filename = filename;
                 memo.date = Date();
                 memo.length = "\(time.min):\(String(format: "%02d", time.sec))";
 
@@ -113,15 +112,19 @@ class AudioRP {
         
         if recorder == nil { //not currently recording
             do{
-                print(memo.url!);
-                let url = URL(string: memo.url!)!
-                player = try AVAudioPlayer(contentsOf: url);
+                let url = getDirectory().appending(path: memo.filename! + ext);
+                
+                player = try AVAudioPlayer(contentsOf: url, fileTypeHint: ext);
                 player.prepareToPlay();
                 player.play();
             }catch let error as NSError{
                 print("Audio playback error: \(error.description)");
             }
         }
+    }
+    
+    func renameAudioMemo(_ memo : AudioMemo) {
+        
     }
 
     
