@@ -105,6 +105,8 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
     }
         
     func audioCellTitleEdited(_ title : String, _ tag : Int) -> Void {
+        audiorp.renameAudioMemo(oldName: memos[tag].filename!, newName: title);
+        
         memos[tag].filename = title;
         reloadAudioMemos();
     }

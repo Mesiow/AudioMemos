@@ -123,8 +123,15 @@ class AudioRP {
         }
     }
     
-    func renameAudioMemo(_ memo : AudioMemo) {
-        
+    func renameAudioMemo(oldName : String, newName : String) {
+        do {
+            let original = getDirectory().appending(path: oldName + ext);
+            let new = getDirectory().appending(path: newName + ext);
+            try FileManager.default.moveItem(at: original, to: new);
+        }
+        catch {
+            print("Error renaming audio file: \(error)");
+        }
     }
 
     
