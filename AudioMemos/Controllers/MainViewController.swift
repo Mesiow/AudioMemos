@@ -35,9 +35,6 @@ class MainViewController: UIViewController, AudioRPDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //deleteAllRecords();
-        //UserDefaults.standard.removeObject(forKey: "RecordingsCount");
-        
         loadAudioMemos();
         //populate selected boolean array
         for _ in 0..<memos.count {
