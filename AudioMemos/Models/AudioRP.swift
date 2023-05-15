@@ -30,7 +30,7 @@ class AudioRP {
     
     func setup() -> Void {
         //load number of current recordings
-        recordings = UserDefaults.standard.integer(forKey: "RecordingsCount");
+        recordings = UserDefaults.standard.integer(forKey: UserDefaultsKey.recordings);
         
         session = AVAudioSession.sharedInstance();
         do {
@@ -82,7 +82,7 @@ class AudioRP {
                 }
             }
             else{
-                UserDefaults.standard.set(recordings, forKey: "RecordingsCount");
+                UserDefaults.standard.set(recordings, forKey: UserDefaultsKey.recordings);
                 
                 recorder.stop();
                 recorder = nil;

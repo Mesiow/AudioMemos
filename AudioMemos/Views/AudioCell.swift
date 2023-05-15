@@ -22,10 +22,13 @@ class AudioCell: UITableViewCell {
         super.awakeFromNib()
         
         title.delegate = self;
-        self.selectionStyle = .none;
         
+        // Prevent cell highlighting while preserving selectability and separator views
+        var backgroundConfig = UIBackgroundConfiguration.listPlainCell()
+        backgroundConfig.backgroundColor = .clear
+        backgroundConfiguration = backgroundConfig
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -36,6 +39,13 @@ class AudioCell: UITableViewCell {
         super.layoutSubviews();
     }
     
+    func enableInteraction(interaction : Bool){
+        if interaction {
+            title.isUserInteractionEnabled = true;
+        }else{
+            title.isUserInteractionEnabled = false;
+        }
+    }
 }
 
 extension AudioCell : UITextFieldDelegate {

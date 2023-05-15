@@ -39,7 +39,6 @@ extension MainViewController {
     
     func deleteAudioMemoFromCollection(at indexPath: IndexPath){
         CoreDataContext.context.delete(memos[indexPath.row]); //implicity saves the changes of deletion to core data
-        reloadAudioMemos();
     }
     
     func deleteAllRecords() {
