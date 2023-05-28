@@ -53,7 +53,20 @@ class MainViewController: UIViewController, AudioRPDelegate {
         searchBar.delegate = self;
         searchBar.backgroundImage = UIImage();
         
+        //tap gesture to detect when user clicks outside of cells, so that the expande cell can collapse
+        let tap = UITapGestureRecognizer(target: self, action: #selector(viewTappedGesture))
+        tap.cancelsTouchesInView = false;
+        tableView.backgroundView = UIView()
+        tableView.backgroundView?.addGestureRecognizer(tap)
+        
         setupUI();
+    }
+    
+    @objc func viewTappedGesture(){
+        expandRow = false;
+        tableView.beginUpdates();
+        tableView.reloadRows(at: [IndexPath(row: expandedRowIndex, section: 0)], with: UITableView.RowAnimation.automatic);
+        tableView.endUpdates();
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -93,6 +106,11 @@ class MainViewController: UIViewController, AudioRPDelegate {
     }
     
     @IBAction func recordButtonPressed(_ sender: UIButton) {
+        //shrink recording button to show the user that a recording is in progress
+        UIView.animate(withDuration: 0.2, delay: 0, animations: {
+            self.innerButton.transform = CGAffineTransformMakeScale(0.65, 0.65);
+        });
+        
         audiorp.record();
     }
     
@@ -145,6 +163,11 @@ class MainViewController: UIViewController, AudioRPDelegate {
     
     func handleAudioRecordingStopped(_ memo : AudioMemo) {
         //handle what we want to do once the recording has been stopped
+        
+        //enlarge recording button size back to normal
+        UIView.animate(withDuration: 0.2, delay: 0, animations: {
+            self.innerButton.transform = CGAffineTransformMakeScale(1, 1);
+        });
         
         //1. save to core data
         saveAudioMemos();
