@@ -158,6 +158,12 @@ class MainViewController: UIViewController, AudioRPDelegate {
         tableView.reloadData();
     }
     
+    func handleAudioPlaybackEnded() {
+        //recording that we played back ended
+        let cell = tableView.cellForRow(at: IndexPath(row: expandedRowIndex, section: 0)) as? AudioCell;
+        cell?.audioPlaybackStopped();
+    }
+    
     private func setupUI(){
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteButtonPressed));
         navigationItem.leftBarButtonItem?.tintColor = UIColor.systemRed;
@@ -202,6 +208,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
         cell.title.tag = indexPath.row;
         //callback to update audio memo title text
         cell.audioCellTitleEdited = audioCellTitleEdited;
+        cell.audioCellButtonPressed = audioCellButtonPressed;
         
         cell.date.text = memos[indexPath.row].date?.formatted(date: .abbreviated, time: .omitted);
         cell.length.text = memos[indexPath.row].length;
@@ -214,6 +221,15 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
         
         memos[tag].filename = title;
         reloadAudioMemos();
+    }
+    
+    func audioCellButtonPressed(_ play : Bool) {
+        if play {
+            audiorp.playback(memos[expandedRowIndex]);
+        }else{
+            //pause
+            audiorp.pause();
+        }
     }
     
     func handleAudioCellSelected(idx : Int){
@@ -233,12 +249,10 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
         } else {
             expandRow = true;
             expandedRowIndex = indexPath.row;
-            
+                
             tableView.beginUpdates();
             tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.automatic);
             tableView.endUpdates();
-            
-            audiorp.playback(memos[indexPath.row])
         }
     }
     
@@ -252,15 +266,14 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-      /* if let cell = tableView.cellForRow(at: indexPath) as? AudioCell {
-            if indexPath.row == expandedRowIndex && expandRow {
-                cell.length.isHidden = true;
+       if let cell = tableView.cellForRow(at: indexPath) as? AudioCell {
+            if (indexPath.row == expandedRowIndex) && expandRow {
                 return cell.expandedCellHeight;
             }else{
                 cell.length.isHidden = false;
                 return cell.originalCellHeight;
             }
-        }*/
+        }
         return UITableView.automaticDimension;
     }
 }

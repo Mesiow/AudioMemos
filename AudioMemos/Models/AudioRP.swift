@@ -11,10 +11,11 @@ import AVFoundation
 
 protocol AudioRPDelegate {
     func handleAudioRecordingStopped(_ audioMemo : AudioMemo);
+    func handleAudioPlaybackEnded();
 }
 
 //implementation for audio recording and playback
-class AudioRP {
+class AudioRP : NSObject, AVAudioPlayerDelegate {
     var session : AVAudioSession!
     var recorder : AVAudioRecorder! = nil
     var player : AVAudioPlayer!
@@ -27,8 +28,9 @@ class AudioRP {
     
     var start : TimeInterval!
     var finish : TimeInterval!
-    
+ 
     func setup() -> Void {
+        
         //load number of current recordings
         recordings = UserDefaults.standard.integer(forKey: UserDefaultsKey.recordings);
         
@@ -115,11 +117,22 @@ class AudioRP {
                 let url = getDirectory().appending(path: memo.filename! + ext);
                 
                 player = try AVAudioPlayer(contentsOf: url, fileTypeHint: ext);
+                player.delegate = self;
                 player.prepareToPlay();
                 player.play();
             }catch let error as NSError{
                 print("Audio playback error: \(error.description)");
             }
+        }
+    }
+    
+    func pause(){
+        player.pause();
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        if flag {
+            delegate?.handleAudioPlaybackEnded();
         }
     }
     

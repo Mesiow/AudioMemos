@@ -9,11 +9,14 @@ import UIKit
 
 class AudioCell: UITableViewCell {
     var audioCellTitleEdited : ((_ title : String, _ tag : Int) -> Void)!
+    var audioCellButtonPressed : ((_ play : Bool) -> Void)!
     
     var expanded : Bool = false;
     var originalCellHeight : CGFloat = 48.0;
-    var expandedCellHeight : CGFloat = 144.0
+    var expandedCellHeight : CGFloat = 115.0
+    var audioEnabled : Bool = false;
 
+    @IBOutlet weak var button: UIButton!
     @IBOutlet weak var title: UITextField!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var length: UILabel!
@@ -46,6 +49,23 @@ class AudioCell: UITableViewCell {
             title.isUserInteractionEnabled = false;
         }
     }
+    
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        audioEnabled.toggle();
+        if audioEnabled {
+            button.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+            audioCellButtonPressed(true);
+        }else{
+            button.setImage(UIImage(systemName: "play.fill"), for: .normal)
+            audioCellButtonPressed(false);
+        }
+    }
+    
+    func audioPlaybackStopped(){
+        audioEnabled = false;
+        button.setImage(UIImage(systemName: "play.fill"), for: .normal);
+    }
+    
 }
 
 extension AudioCell : UITextFieldDelegate {
